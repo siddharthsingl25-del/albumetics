@@ -6,37 +6,37 @@ window.ALB = (function () {
 
   const PRODUCTS = [
     {
-      id: 'classic-black', name: 'The Classic', price: 24, color: '#0a0a0a',
+      id: 'classic-black', name: 'The Classic', price: 299, color: '#0a0a0a',
       desc: 'Matte black, white waveform. The original Albumetics magnet.',
       long: 'The one that started it all. A deep matte-black face with a crisp white waveform, finished with a debossed tap mark. Understated on any fridge, unmistakable up close.',
       features: ['Premium matte finish', 'Strong neodymium hold', 'Made to order in 2–3 days'],
     },
     {
-      id: 'pure-white', name: 'Pure', price: 24, color: '#1c1c1c',
+      id: 'pure-white', name: 'Pure', price: 299, color: '#1c1c1c',
       desc: 'Clean white face with a debossed tap mark. Minimal, always.',
       long: 'For the minimalists. A clean off-white face with a softly debossed tap mark — no noise, just the song waiting underneath.',
       features: ['Soft-touch white shell', 'Strong neodymium hold', 'Made to order in 2–3 days'],
     },
     {
-      id: 'sunset', name: 'Sunset', price: 28, color: '#ff5a3c',
+      id: 'sunset', name: 'Sunset', price: 299, color: '#ff5a3c',
       desc: 'A warm gradient for the songs that feel like golden hour.',
       long: 'A warm orange-to-coral gradient for the tracks that feel like golden hour. The kind of song you want to see every time you reach for the door.',
       features: ['Hand-blended gradient', 'Strong neodymium hold', 'Made to order in 2–3 days'],
     },
     {
-      id: 'midnight', name: 'Midnight', price: 28, color: '#1f3a8a',
+      id: 'midnight', name: 'Midnight', price: 299, color: '#1f3a8a',
       desc: 'Deep blue, late-night listens. For the 2am playlist.',
       long: 'Deep midnight blue for late-night listens and the 2am playlist. Quiet, moody, and built to glow against a bright kitchen.',
       features: ['Rich pigment shell', 'Strong neodymium hold', 'Made to order in 2–3 days'],
     },
     {
-      id: 'forest', name: 'Forest', price: 28, color: '#1f5d3a',
+      id: 'forest', name: 'Forest', price: 299, color: '#1f5d3a',
       desc: 'Earthy green tones for acoustic mornings and slow songs.',
       long: 'Earthy forest green for acoustic mornings and slow songs. Calm, grounded, and a little bit alive.',
       features: ['Earth-tone finish', 'Strong neodymium hold', 'Made to order in 2–3 days'],
     },
     {
-      id: 'duo-pack', name: 'The Duo Pack', price: 44, color: '#0a0a0a',
+      id: 'duo-pack', name: 'The Duo Pack', price: 299, color: '#0a0a0a',
       desc: 'Two magnets, two songs. Keep one, gift one. Best value.',
       long: 'Two magnets, two songs, one box. Keep one and gift the other — or encode a his-and-hers pair. Our best value, and our most-gifted set.',
       features: ['Two magnets, two songs', 'Mix any two colours on request', 'Made to order in 2–3 days'],
@@ -50,11 +50,11 @@ window.ALB = (function () {
   };
   const DEFAULT_VERSION = 'spotify';
 
-  const fmt = (n) => '$' + n;
+  const fmt = (n) => '₹' + n;
   const find = (id) => PRODUCTS.find((p) => p.id === id);
 
   // Custom / build-your-own magnet
-  const CUSTOM = { id: 'custom', name: 'Custom Magnet', price: 29 };
+  const CUSTOM = { id: 'custom', name: 'Custom Magnet', price: 299 };
 
   function shade(hex, percent) {
     const n = parseInt(hex.replace('#', ''), 16);

@@ -96,7 +96,7 @@
           <button class="btn btn--solid btn--lg pdp__add" id="addBtn">Add to cart · ${A.fmt(A.CUSTOM.price)}</button>
         </div>
 
-        <p class="pdp__meta reveal">Made to order · ships in 2–3 days · free shipping over $60</p>
+        <p class="pdp__meta reveal">Made to order · ships in 2–3 days · free shipping over ₹999</p>
       </div>
     </div>
 

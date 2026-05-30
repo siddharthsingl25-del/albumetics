@@ -311,7 +311,7 @@ body.nav-open .header__burger span:nth-child(3) { transform: translateY(-7px) ro
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px;
 }
 @media (max-width: 980px) { .products { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .products { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .products { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
 
 .card {
   border-radius: var(--radius); overflow: hidden;
@@ -774,6 +774,14 @@ body.nav-open .header__burger span:nth-child(3) { transform: translateY(-7px) ro
   /* tighten section padding */
   .how, .shop, .story, .showcase { padding-left: var(--pad); padding-right: var(--pad); }
   .section-head { padding-bottom: 40px; }
+
+  /* keep two product cards per row, just more compact */
+  .shop { padding-left: 16px; padding-right: 16px; }
+  .card__body { padding: 14px 14px 18px; }
+  .card__name { font-size: 16px; }
+  .card__price { font-size: 15px; }
+  .card__desc { font-size: 13px; margin: 6px 0 14px; }
+  .card__add { font-size: 13px; padding: 11px; }
 
   /* product detail */
   .pdp { padding-top: 96px; }

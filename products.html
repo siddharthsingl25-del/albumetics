@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Albumetics — All products</title>
+  <meta name="description" content="The full Albumetics collection — NFC song magnets that play your favourite tracks. Tap to play." />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=ranade@300,400,500,700,800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='80' font-family='Georgia,serif' font-size='92' font-weight='700' text-anchor='middle'>A</text></svg>" />
+</head>
+<body>
+  <div class="loader" id="loader">
+    <div class="loader__inner">
+      <span class="loader__word brand"><span class="brand__cap">A</span>lbumetics</span>
+      <div class="loader__bar"><span></span></div>
+    </div>
+  </div>
+
+  <div class="cursor" id="cursor"></div>
+
+  <header class="header" id="header">
+    <a href="index.html" class="header__logo brand" aria-label="Albumetics"><span class="brand__cap">A</span>lbumetics</a>
+    <nav class="header__nav" id="navMenu">
+      <a href="products.html" class="is-active">Shop</a>
+      <a href="custom.html">Customize</a>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#story">Story</a>
+    </nav>
+    <div class="header__actions">
+      <button class="header__cart" id="cartBtn" aria-label="Open cart">
+        Cart <span class="header__cart-count" id="cartCount">0</span>
+      </button>
+      <button class="header__burger" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="shop shop--page">
+    <div class="section-head">
+      <p class="section-head__kicker reveal">The collection</p>
+      <h2 class="section-head__title reveal">All magnets.</h2>
+    </div>
+    <div class="products" id="products"><!-- injected by JS --></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <span class="footer__logo brand"><span class="brand__cap">A</span>lbumetics</span>
+      <nav class="footer__nav">
+        <a href="products.html">Shop</a>
+        <a href="custom.html">Customize</a>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#story">Story</a>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="year"></span> Albumetics</span>
+      <span>Tap. Play. Remember.</span>
+    </div>
+  </footer>
+
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="cart" id="cart" aria-hidden="true">
+    <div class="cart__head">
+      <h3>Your cart</h3>
+      <button class="cart__close" id="cartClose" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart__items" id="cartItems"></div>
+    <div class="cart__foot">
+      <div class="cart__row">
+        <span>Subtotal</span>
+        <span id="cartTotal">₹0</span>
+      </div>
+      <button class="btn btn--solid btn--block" id="checkoutBtn">Checkout</button>
+      <p class="cart__note">Free shipping over ₹999 · Made to order</p>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

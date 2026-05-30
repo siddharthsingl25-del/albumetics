@@ -18,9 +18,25 @@ Tap a magnet with your phone and the track you love starts playing instantly. No
 - A working **shop** with product grid — each card opens a **product page**
 - **Product detail page** (`product.html?id=…`) with a **Spotify / Apple Music edition** selector and quantity stepper
 - **Customize page** (`custom.html`) — upload album art, add song + artist (with a live preview) for a made-to-order magnet
-- A **cart drawer** with add / quantity / remove, live totals, and mock checkout. Each line remembers its edition (Spotify vs Apple Music)
+- A **cart drawer** with add / quantity / remove, live totals, and **checkout**. Each line remembers its edition (Spotify vs Apple Music)
+- **Checkout** collects shipping details (name, phone, email, Instagram, address, city, state, PIN, notes) and **pushes the order to ntfy.sh** so you get a phone notification
 - Cart persists in `localStorage`
 - Fully responsive; respects `prefers-reduced-motion`
+
+## Order notifications (ntfy)
+
+Orders are sent as a push notification via [ntfy.sh](https://ntfy.sh) — no
+backend or server needed.
+
+**To receive orders:**
+1. Install the **ntfy** app (Android / iOS) or open [ntfy.sh](https://ntfy.sh) in a browser.
+2. Subscribe to the topic set in `js/cart.js` (`NTFY_TOPIC`).
+3. Place a test order — a notification appears with the customer + items.
+
+**Important:** change `NTFY_TOPIC` at the top of `js/cart.js` to your own
+long, secret topic name. Anyone who knows the topic can read your orders, so
+keep it private (don't reuse a guessable word). For stronger privacy you can
+self-host ntfy or use an access-token-protected topic.
 
 ## Run it
 

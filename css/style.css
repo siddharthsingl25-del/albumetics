@@ -689,3 +689,44 @@ img { max-width: 100%; display: block; }
 
 /* custom thumbnail in cart */
 .cart-item__thumb--img { background-size: cover; background-position: center; }
+
+/* ============================================================
+   Checkout modal (shipping details)
+   ============================================================ */
+.co-overlay {
+  position: fixed; inset: 0; background: rgba(10,10,10,0.45); backdrop-filter: blur(4px);
+  opacity: 0; pointer-events: none; transition: opacity 0.45s var(--ease); z-index: 500;
+}
+.co-overlay.open { opacity: 1; pointer-events: auto; }
+.co {
+  position: fixed; z-index: 600; top: 50%; left: 50%;
+  width: min(560px, 94vw); max-height: 92vh; display: flex; flex-direction: column;
+  background: var(--white); border-radius: 22px; overflow: hidden;
+  box-shadow: 0 50px 110px -30px rgba(10,10,10,0.55);
+  transform: translate(-50%, -46%) scale(0.96); opacity: 0; pointer-events: none;
+  transition: transform 0.5s var(--ease), opacity 0.4s var(--ease);
+}
+.co.open { transform: translate(-50%, -50%) scale(1); opacity: 1; pointer-events: auto; }
+.co__head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 26px; border-bottom: 1px solid var(--ink-06);
+}
+.co__head h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+.co__body {
+  padding: 22px 26px; overflow-y: auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px;
+}
+@media (max-width: 480px) { .co__body { grid-template-columns: 1fr; } }
+.co-field { display: flex; flex-direction: column; }
+.co-field--full { grid-column: 1 / -1; }
+.co-field label { font-size: 13px; font-weight: 500; color: var(--ink-70); margin-bottom: 6px; }
+.co-req { color: #e02f2f; }
+.co-field input, .co-field textarea {
+  width: 100%; font-family: inherit; font-size: 15px; color: var(--ink);
+  padding: 12px 14px; border-radius: 11px; border: 1.5px solid var(--ink-12); background: var(--white);
+  transition: border-color 0.25s var(--ease); resize: vertical;
+}
+.co-field input::placeholder, .co-field textarea::placeholder { color: var(--ink-45); }
+.co-field input:focus, .co-field textarea:focus { outline: none; border-color: var(--ink); }
+.co-field--error input, .co-field--error textarea { border-color: #e02f2f; animation: shake 0.4s; }
+.co__foot { padding: 18px 26px 24px; border-top: 1px solid var(--ink-06); }

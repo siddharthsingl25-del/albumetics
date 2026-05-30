@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Albumetics — Magnet</title>
+  <meta name="description" content="An Albumetics NFC song magnet — choose a Spotify or Apple Music edition. Tap to play." />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=ranade@300,400,500,700,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬤</text></svg>" />
+</head>
+<body>
+  <div class="loader" id="loader">
+    <div class="loader__inner">
+      <span class="loader__word">albumetics</span>
+      <div class="loader__bar"><span></span></div>
+    </div>
+  </div>
+
+  <div class="cursor" id="cursor"></div>
+
+  <header class="header" id="header">
+    <a href="index.html" class="header__logo">albumetics<span class="dot">.</span></a>
+    <nav class="header__nav">
+      <a href="index.html#shop">Shop</a>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#story">Story</a>
+    </nav>
+    <button class="header__cart" id="cartBtn" aria-label="Open cart">
+      Cart <span class="header__cart-count" id="cartCount">0</span>
+    </button>
+  </header>
+
+  <main class="pdp" id="pdp">
+    <!-- injected by product.js -->
+  </main>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <span class="footer__logo">albumetics<span class="dot">.</span></span>
+      <nav class="footer__nav">
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#shop">Shop</a>
+        <a href="index.html#story">Story</a>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="year"></span> Albumetics</span>
+      <span>Tap. Play. Remember.</span>
+    </div>
+  </footer>
+
+  <!-- Cart drawer -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="cart" id="cart" aria-hidden="true">
+    <div class="cart__head">
+      <h3>Your cart</h3>
+      <button class="cart__close" id="cartClose" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart__items" id="cartItems"></div>
+    <div class="cart__foot">
+      <div class="cart__row">
+        <span>Subtotal</span>
+        <span id="cartTotal">$0</span>
+      </div>
+      <button class="btn btn--solid btn--block" id="checkoutBtn">Checkout</button>
+      <p class="cart__note">Free shipping over $60 · Made to order</p>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/product.js"></script>
+</body>
+</html>

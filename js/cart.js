@@ -313,15 +313,21 @@ window.Cart = (function () {
     btn.disabled = true; btn.textContent = 'Placing order…';
 
     const message = buildMessage(data, sum, count);
+    // HTTP headers must be Latin-1 only — strip anything else (₹, emoji, etc.)
+    const asciiName = data.name.replace(/[^\x20-\x7E]/g, '').trim() || 'Customer';
+    const title = `New order - ${asciiName} - Rs ${sum}`;
     let ok = false;
     try {
       const res = await fetch(NTFY_URL, {
         method: 'POST',
-        headers: { 'Title': `New order · ${data.name} · ${A.fmt(sum)}`, 'Tags': 'shopping_cart,magnet', 'Priority': 'high' },
+        headers: { 'Title': title, 'Tags': 'shopping_cart', 'Priority': 'high' },
         body: message,
       });
       ok = res.ok;
-    } catch (err) { ok = false; }
+    } catch (err) {
+      console.error('ntfy order failed:', err);
+      ok = false;
+    }
 
     btn.disabled = false; btn.textContent = 'Place order';
 

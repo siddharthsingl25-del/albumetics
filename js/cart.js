@@ -19,7 +19,7 @@ window.Cart = (function () {
      IMPORTANT: anyone who knows this topic can read your orders,
      so keep it secret. Change it to your own private topic here:
      ============================================================ */
-  const NTFY_TOPIC = 'albumetics-orders-a8f3k9qz';
+  const NTFY_TOPIC = 'albumetics-orders-ama961fsmxtl5e5j';
   const NTFY_URL = 'https://ntfy.sh/' + NTFY_TOPIC;
 
   let state = load();           // { items: {key:qty}, customs: [..] }

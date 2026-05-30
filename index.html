@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Albumetics — Tap. Play. Remember.</title>
+  <meta name="description" content="NFC fridge magnets that play your favourite songs. Tap with your phone and the music begins. Albumetics turns sound into something you can hold." />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=ranade@300,400,500,700,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬤</text></svg>" />
+</head>
+<body>
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader__inner">
+      <span class="loader__word">albumetics</span>
+      <div class="loader__bar"><span></span></div>
+    </div>
+  </div>
+
+  <!-- Cursor follower -->
+  <div class="cursor" id="cursor"></div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <a href="#top" class="header__logo" data-scroll>albumetics<span class="dot">.</span></a>
+    <nav class="header__nav">
+      <a href="#how" data-scroll>How it works</a>
+      <a href="#shop" data-scroll>Shop</a>
+      <a href="#story" data-scroll>Story</a>
+    </nav>
+    <button class="header__cart" id="cartBtn" aria-label="Open cart">
+      Cart <span class="header__cart-count" id="cartCount">0</span>
+    </button>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <span class="grain"></span>
+      </div>
+      <div class="hero__inner">
+        <p class="hero__eyebrow reveal">NFC fridge magnets · for songs</p>
+        <h1 class="hero__title">
+          <span class="line"><span>Tap. Play.</span></span>
+          <span class="line"><span>Remember.</span></span>
+        </h1>
+        <p class="hero__lead reveal">
+          A magnet for your fridge that holds a song. Tap it with your phone
+          and the track you love starts playing — instantly.
+        </p>
+        <div class="hero__actions reveal">
+          <a href="#shop" class="btn btn--solid" data-scroll>Shop the magnets</a>
+          <a href="#how" class="btn btn--ghost" data-scroll>See how it works</a>
+        </div>
+      </div>
+
+      <!-- Floating magnet -->
+      <div class="hero__magnet" id="heroMagnet">
+        <div class="magnet">
+          <div class="magnet__art">
+            <div class="magnet__rings"><i></i><i></i><i></i></div>
+            <div class="magnet__bars"><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="magnet__nfc">⌖ NFC</div>
+        </div>
+      </div>
+
+      <div class="hero__marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>tap to play</span><span>·</span><span>your song, your fridge</span><span>·</span>
+          <span>powered by nfc</span><span>·</span><span>no app needed</span><span>·</span>
+          <span>tap to play</span><span>·</span><span>your song, your fridge</span><span>·</span>
+          <span>powered by nfc</span><span>·</span><span>no app needed</span><span>·</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how" id="how">
+      <div class="section-head">
+        <p class="section-head__kicker reveal">How it works</p>
+        <h2 class="section-head__title reveal">Three taps from sound to memory.</h2>
+      </div>
+      <div class="steps">
+        <article class="step reveal">
+          <span class="step__num">01</span>
+          <h3>Pick your song</h3>
+          <p>Choose any track — a Spotify, Apple Music or YouTube link. We encode it onto the magnet's NFC chip.</p>
+        </article>
+        <article class="step reveal">
+          <span class="step__num">02</span>
+          <h3>Stick it on the fridge</h3>
+          <p>A premium magnet that holds strong and looks like a piece of art on its own.</p>
+        </article>
+        <article class="step reveal">
+          <span class="step__num">03</span>
+          <h3>Tap with your phone</h3>
+          <p>Hold any modern phone near it. The song opens and plays — no app, no setup, just music.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Showcase / pull quote -->
+    <section class="showcase">
+      <div class="showcase__line reveal-text">
+        <p>Some songs deserve a place you walk past every day.</p>
+      </div>
+    </section>
+
+    <!-- Shop -->
+    <section class="shop" id="shop">
+      <div class="section-head">
+        <p class="section-head__kicker reveal">The collection</p>
+        <h2 class="section-head__title reveal">Choose your magnet.</h2>
+      </div>
+      <div class="products" id="products"><!-- injected by JS --></div>
+    </section>
+
+    <!-- Story -->
+    <section class="story" id="story">
+      <div class="story__grid">
+        <div class="story__text reveal">
+          <p class="section-head__kicker">The story</p>
+          <h2>Music you can touch.</h2>
+          <p>
+            Streaming made every song weightless. Albumetics gives the ones that
+            matter a little weight again — a magnet on the fridge, a tap before
+            coffee, a memory that plays out loud.
+          </p>
+          <p>
+            Each magnet is made-to-order, encoded by hand and built to last.
+            Gift it, collect it, or fill a whole fridge with the soundtrack of
+            your life.
+          </p>
+        </div>
+        <div class="story__stats reveal">
+          <div class="stat"><span class="stat__num" data-count="100">0</span><span class="stat__label">% no-app playback</span></div>
+          <div class="stat"><span class="stat__num" data-count="3">0</span><span class="stat__label">second setup</span></div>
+          <div class="stat"><span class="stat__num" data-count="50">0</span><span class="stat__label">+ designs</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="cta__inner reveal">
+        <h2>Put a song on your fridge.</h2>
+        <a href="#shop" class="btn btn--solid btn--lg" data-scroll>Start your collection</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <span class="footer__logo">albumetics<span class="dot">.</span></span>
+      <nav class="footer__nav">
+        <a href="#how" data-scroll>How it works</a>
+        <a href="#shop" data-scroll>Shop</a>
+        <a href="#story" data-scroll>Story</a>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="year"></span> Albumetics</span>
+      <span>Tap. Play. Remember.</span>
+    </div>
+  </footer>
+
+  <!-- Cart drawer -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="cart" id="cart" aria-hidden="true">
+    <div class="cart__head">
+      <h3>Your cart</h3>
+      <button class="cart__close" id="cartClose" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart__items" id="cartItems"></div>
+    <div class="cart__foot">
+      <div class="cart__row">
+        <span>Subtotal</span>
+        <span id="cartTotal">$0</span>
+      </div>
+      <button class="btn btn--solid btn--block" id="checkoutBtn">Checkout</button>
+      <p class="cart__note">Free shipping over $60 · Made to order</p>
+    </div>
+  </aside>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

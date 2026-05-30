@@ -105,5 +105,67 @@ window.ALB = (function () {
     },
   ];
 
-  return { PRODUCTS, VERSIONS, DEFAULT_VERSION, ICONS, SPECS, fmt, find, shade, textOn };
+  // Frequently asked questions — accordion on every product page.
+  // Each answer is an array of paragraphs.
+  const FAQS = [
+    {
+      q: 'Are these magnets compatible with my phone?',
+      a: [
+        'Most modern smartphones are equipped with NFC technology.',
+        'iOS: all models from iPhone 7 and newer.',
+        'Android: 95% of smartphones support NFC. To be sure, go to Settings and type "NFC" in the search bar — if a toggle appears, your phone is compatible.',
+      ],
+    },
+    {
+      q: 'What is Anti-Metal NFC technology?',
+      a: [
+        "Anti-Metal NFC is a specialised technology that lets our magnets work perfectly on metal surfaces like refrigerators, CPUs and filing cabinets. Traditional NFC chips don't function well on metal, but our advanced chips are designed specifically to overcome this limitation.",
+      ],
+    },
+    {
+      q: 'Do I need a specific app to use the magnet?',
+      a: ['No app is required. Just tap your NFC-enabled smartphone and it will instantly open the link.'],
+    },
+    {
+      q: 'How durable are these magnets?',
+      a: ["Our magnets are built to last. Each one features premium 4mm-thick acrylic with high-quality 250 GSM paper printing, and they're completely waterproof."],
+    },
+    {
+      q: 'How do I check for NFC on my device?',
+      a: [
+        'Android: go to Settings and type "NFC" in the search bar. If a toggle appears, your phone is compatible.',
+        'iOS: if you have an iPhone 7 or newer, NFC is already built in and always active.',
+      ],
+    },
+    {
+      q: 'Does it need a battery or charging?',
+      a: ['Zero batteries, zero charging! Our magnets use passive NFC technology that draws a tiny bit of power from your phone only when you tap it.'],
+    },
+    {
+      q: 'Is the magnet strong enough? Will it slide down?',
+      a: ['We use industrial-grade neodymium magnets. Despite the 4mm thickness of the acrylic, the grip is rock solid.'],
+    },
+    {
+      q: 'Is shipping free?',
+      a: ['Shipping is completely free when you buy 2 or more products.'],
+    },
+    {
+      q: 'How long will it take to reach me?',
+      a: ['We deliver across India within 4 to 7 business days. You will receive a tracking ID as soon as your order is on its way.'],
+    },
+    {
+      q: 'What if I receive a damaged or broken product?',
+      a: ['Your satisfaction is our priority! If your magnet arrives damaged, we will send you a 100% free replacement. Note: an unboxing video is mandatory.'],
+    },
+    {
+      q: 'How do I report a problem with my order?',
+      a: ['Please reach out to us within 48 hours of delivery. Email us at albummagnets@gmail.com or DM us on Instagram with your Order ID.'],
+    },
+    {
+      q: "What if the NFC isn't scanning?",
+      a: ["Don't worry — every single magnet we ship undergoes 3 to 4 rounds of strict testing to ensure the NFC is working perfectly. If it's not scanning instantly, it's usually a small settings or placement issue that's easily solved by reading the \"How to use your NFC magnet\" guide mentioned above."],
+    },
+  ];
+
+  return { PRODUCTS, VERSIONS, DEFAULT_VERSION, ICONS, SPECS, FAQS, fmt, find, shade, textOn };
 })();

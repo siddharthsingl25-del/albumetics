@@ -95,6 +95,22 @@
             <p class="spec__text">${s.text}</p>
           </article>`).join('')}
       </div>
+    </section>
+
+    <section class="faq">
+      <h2 class="faq__title reveal">Frequently asked questions</h2>
+      <div class="faq__list">
+        ${A.FAQS.map((f, i) => `
+          <div class="faq-item reveal" data-delay="${i % 2}">
+            <button class="faq-item__q" aria-expanded="false">
+              <span>${f.q}</span>
+              <span class="faq-item__chev" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </button>
+            <div class="faq-item__a"><div>${f.a.map((p) => `<p>${p}</p>`).join('')}</div></div>
+          </div>`).join('')}
+      </div>
     </section>`;
 
   root.querySelectorAll('.reveal').forEach((el) => window.UI.observe(el));
@@ -128,4 +144,16 @@
 
   syncVersion();
   syncQty();
+
+  /* FAQ accordion — answers hidden until the arrow is clicked */
+  const faqList = root.querySelector('.faq__list');
+  if (faqList) {
+    faqList.addEventListener('click', (e) => {
+      const btn = e.target.closest('.faq-item__q');
+      if (!btn) return;
+      const item = btn.closest('.faq-item');
+      const open = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
 })();

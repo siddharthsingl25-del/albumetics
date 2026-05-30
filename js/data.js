@@ -8,7 +8,7 @@ window.ALB = (function () {
     {
       id: 'classic-black', name: 'The Classic', price: 299, color: '#0a0a0a',
       desc: 'Matte black, white waveform. The original Albumetics magnet.',
-      long: 'The one that started it all. A deep matte-black face with a crisp white waveform, finished with a debossed tap mark. Understated on any fridge, unmistakable up close.',
+      long: 'The one that started it all. A deep matte-black face with a crisp white waveform, finished with a debossed tap mark. Understated on any fridge or metal surface, unmistakable up close.',
       features: ['Premium matte finish', 'Strong neodymium hold', 'Made to order in 2–3 days'],
     },
     {

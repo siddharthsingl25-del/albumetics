@@ -39,6 +39,20 @@ window.UI = (function () {
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
+  /* Mobile nav menu */
+  const navToggle = $('#navToggle');
+  const navMenu = $('#navMenu');
+  if (navToggle && navMenu) {
+    const setMenu = (open) => {
+      document.body.classList.toggle('nav-open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    navToggle.addEventListener('click', () => setMenu(!document.body.classList.contains('nav-open')));
+    navMenu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+  }
+
   /* Smooth in-page anchor scroll */
   $$('[data-scroll]').forEach((a) => {
     a.addEventListener('click', (e) => {

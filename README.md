@@ -17,6 +17,7 @@ Tap a magnet with your phone and the track you love starts playing instantly. No
 - Scroll-reveal sections, animated equaliser/NFC artwork, counters, marquee
 - A working **shop** with product grid — each card opens a **product page**
 - **Product detail page** (`product.html?id=…`) with a **Spotify / Apple Music edition** selector and quantity stepper
+- **Customize page** (`custom.html`) — upload album art, add song + artist (with a live preview) for a made-to-order magnet
 - A **cart drawer** with add / quantity / remove, live totals, and mock checkout. Each line remembers its edition (Spotify vs Apple Music)
 - Cart persists in `localStorage`
 - Fully responsive; respects `prefers-reduced-motion`

@@ -53,6 +53,9 @@ window.ALB = (function () {
   const fmt = (n) => '$' + n;
   const find = (id) => PRODUCTS.find((p) => p.id === id);
 
+  // Custom / build-your-own magnet
+  const CUSTOM = { id: 'custom', name: 'Custom Magnet', price: 29 };
+
   function shade(hex, percent) {
     const n = parseInt(hex.replace('#', ''), 16);
     let r = (n >> 16) + percent, g = ((n >> 8) & 0xff) + percent, b = (n & 0xff) + percent;
@@ -167,5 +170,5 @@ window.ALB = (function () {
     },
   ];
 
-  return { PRODUCTS, VERSIONS, DEFAULT_VERSION, ICONS, SPECS, FAQS, fmt, find, shade, textOn };
+  return { PRODUCTS, VERSIONS, DEFAULT_VERSION, ICONS, SPECS, FAQS, CUSTOM, fmt, find, shade, textOn };
 })();

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Albumetics — Magnet</title>
-  <meta name="description" content="An Albumetics NFC song magnet — choose a Spotify or Apple Music edition. Tap to play." />
+  <title>Albumetics — Customize your magnet</title>
+  <meta name="description" content="Build your own Albumetics NFC magnet — upload your album art, add the song and artist, and we print exactly what you provide." />
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,7 +27,7 @@
     <a href="index.html" class="header__logo brand" aria-label="Albumetics"><span class="brand__cap">A</span>lbumetics</a>
     <nav class="header__nav">
       <a href="index.html#shop">Shop</a>
-      <a href="custom.html">Customize</a>
+      <a href="custom.html" class="is-active">Customize</a>
       <a href="index.html#how">How it works</a>
       <a href="index.html#story">Story</a>
     </nav>
@@ -36,16 +36,14 @@
     </button>
   </header>
 
-  <main class="pdp" id="pdp">
-    <!-- injected by product.js -->
-  </main>
+  <main class="pdp" id="custom"><!-- injected by custom.js --></main>
 
   <footer class="footer">
     <div class="footer__top">
       <span class="footer__logo brand"><span class="brand__cap">A</span>lbumetics</span>
       <nav class="footer__nav">
-        <a href="index.html#shop">Shop</a>
         <a href="custom.html">Customize</a>
+        <a href="index.html#shop">Shop</a>
         <a href="index.html#how">How it works</a>
         <a href="index.html#story">Story</a>
       </nav>
@@ -56,7 +54,6 @@
     </div>
   </footer>
 
-  <!-- Cart drawer -->
   <div class="drawer-overlay" id="drawerOverlay"></div>
   <aside class="cart" id="cart" aria-hidden="true">
     <div class="cart__head">
@@ -79,6 +76,6 @@
   <script src="js/data.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/cart.js"></script>
-  <script src="js/product.js"></script>
+  <script src="js/custom.js"></script>
 </body>
 </html>

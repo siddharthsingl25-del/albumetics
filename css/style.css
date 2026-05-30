@@ -608,3 +608,27 @@ img { max-width: 100%; display: block; }
 .faq-item__a > div { padding-bottom: 6px; }
 .faq-item.open .faq-item__a > div { padding-bottom: 22px; }
 @media (max-width: 560px) { .faq-item__a p { padding-right: 0; } }
+
+/* ============================================================
+   Brand wordmark (ALBUMETICS) — Cinzel serif, large initial A
+   ============================================================ */
+.brand {
+  font-family: 'Cinzel', Georgia, 'Times New Roman', serif !important;
+  text-transform: uppercase;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  display: inline-flex;
+  align-items: baseline;
+  line-height: 1;
+  color: var(--ink);
+}
+.brand__cap {
+  font-weight: 700;
+  font-size: 1.5em;
+  line-height: 0;
+  margin-right: 0.02em;
+}
+/* per-placement sizing */
+.header__logo.brand { font-size: 19px; }
+.footer__logo.brand { font-size: 22px; }
+.loader__word.brand { display: inline-flex; overflow: visible; }

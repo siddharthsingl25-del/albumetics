@@ -71,5 +71,39 @@ window.ALB = (function () {
     apple: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 100 20 10 10 0 000-20zm3.2 5.07v6.9a2.06 2.06 0 01-1.46 2 2.04 2.04 0 11-1.4-3.83c.36 0 .7.09 1 .25V8.86l-3.93.86v5.06a2.06 2.06 0 01-1.46 2 2.04 2.04 0 11-1.4-3.83c.36 0 .7.09 1 .25V8.2c0-.38.26-.7.63-.78l4.93-1.08a.66.66 0 01.8.64z"/></svg>',
   };
 
-  return { PRODUCTS, VERSIONS, DEFAULT_VERSION, ICONS, fmt, find, shade, textOn };
+  // Product specs / trust badges shown on every product page
+  const SPECS = [
+    {
+      title: 'Anti-Metal NFC Technology',
+      text: 'Seamlessly triggers Spotify / Apple Music links even on metal surfaces like refrigerators or PC cabinets.',
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.2"/><circle cx="12" cy="12" r="1"/></svg>',
+    },
+    {
+      title: '4mm Premium Acrylic',
+      text: 'A solid, heavy-duty build with a luxury glass-like finish — not just a thin magnet.',
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="11" height="11" rx="2"/><rect x="9.5" y="9.5" width="11" height="11" rx="2"/></svg>',
+    },
+    {
+      title: '250 GSM High-Gloss Paper',
+      text: 'Lab-grade premium photo paper for deep blacks and vibrant album art colors.',
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>',
+    },
+    {
+      title: 'Ultra-HD Print Mastery',
+      text: '300+ DPI high-definition printing that captures every detail of the artwork.',
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="9" cy="9" r="1.6"/><path d="M5 16.5l3.5-3.5 3 3 3-3L20 17"/></svg>',
+    },
+    {
+      title: 'Secure Checkout',
+      text: 'Encrypted payment gateway for a 100% safe and worry-free shopping experience.',
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="6.5" y1="14.5" x2="9.5" y2="14.5"/></svg>',
+    },
+    {
+      title: 'Prepaid Privilege',
+      text: 'Faster processing and priority dispatch on all prepaid orders.',
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8.5l-9-5-9 5 9 5 9-5z"/><path d="M3 8.5v7l9 5 9-5v-7"/><line x1="12" y1="13.5" x2="12" y2="20.5"/></svg>',
+    },
+  ];
+
+  return { PRODUCTS, VERSIONS, DEFAULT_VERSION, ICONS, SPECS, fmt, find, shade, textOn };
 })();

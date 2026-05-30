@@ -83,7 +83,19 @@
 
         <p class="pdp__meta reveal">Made to order · ships in 2–3 days · free shipping over $60</p>
       </div>
-    </div>`;
+    </div>
+
+    <section class="specs">
+      <h2 class="specs__title reveal">Built different.</h2>
+      <div class="specs__grid">
+        ${A.SPECS.map((s, i) => `
+          <article class="spec reveal" data-delay="${i % 3}">
+            <span class="spec__icon">${s.icon}</span>
+            <h3 class="spec__title">${s.title}</h3>
+            <p class="spec__text">${s.text}</p>
+          </article>`).join('')}
+      </div>
+    </section>`;
 
   root.querySelectorAll('.reveal').forEach((el) => window.UI.observe(el));
 

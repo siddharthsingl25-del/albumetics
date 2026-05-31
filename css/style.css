@@ -861,17 +861,3 @@ body.nav-open .header__burger span:nth-child(3) { transform: translateY(-7px) ro
   .faq-item__q { padding: 18px 2px; font-size: 16px; }
   .faq-item__chev { width: 32px; height: 32px; }
 }
-
-/* ---------- Shorter product page on mobile ---------- */
-@media (max-width: 600px) {
-  .specs { margin-top: 56px; }
-  .specs__title, .faq__title { margin-bottom: 28px; font-size: 28px; }
-  .faq { margin-top: 56px; }
-  .specs__grid { gap: 26px 18px; }
-  .spec__icon { width: 46px; height: 46px; margin-bottom: 14px; }
-  .spec__icon svg { width: 22px; height: 22px; }
-  .spec__title { font-size: 16px; margin-bottom: 6px; }
-  .spec__text { font-size: 13.5px; }
-  .faq-item__q { padding: 18px 2px; font-size: 16px; }
-  .faq-item__chev { width: 32px; height: 32px; }
-}

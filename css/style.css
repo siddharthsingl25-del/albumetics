@@ -595,8 +595,7 @@ body.nav-open .header__burger span:nth-child(3) { transform: translateY(-7px) ro
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: clamp(28px, 4vw, 56px) clamp(28px, 5vw, 70px);
 }
-@media (max-width: 760px) { .specs__grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 460px) { .specs__grid { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .specs__grid { grid-template-columns: repeat(2, 1fr); gap: 28px 22px; } }
 .spec__icon {
   display: inline-grid; place-items: center; width: 54px; height: 54px;
   border-radius: 14px; border: 1px solid var(--ink-12); background: var(--paper);
@@ -848,3 +847,31 @@ body.nav-open .header__burger span:nth-child(3) { transform: translateY(-7px) ro
 }
 .card--custom .card__art--custom .wave { opacity: 0.55; }
 .card--custom .card__name { display: inline-flex; align-items: center; gap: 7px; }
+
+/* ---------- Shorter product page on mobile ---------- */
+@media (max-width: 600px) {
+  .specs { margin-top: 56px; }
+  .specs__title, .faq__title { margin-bottom: 28px; font-size: 28px; }
+  .faq { margin-top: 56px; }
+  .specs__grid { gap: 26px 18px; }
+  .spec__icon { width: 46px; height: 46px; margin-bottom: 14px; }
+  .spec__icon svg { width: 22px; height: 22px; }
+  .spec__title { font-size: 16px; margin-bottom: 6px; }
+  .spec__text { font-size: 13.5px; }
+  .faq-item__q { padding: 18px 2px; font-size: 16px; }
+  .faq-item__chev { width: 32px; height: 32px; }
+}
+
+/* ---------- Shorter product page on mobile ---------- */
+@media (max-width: 600px) {
+  .specs { margin-top: 56px; }
+  .specs__title, .faq__title { margin-bottom: 28px; font-size: 28px; }
+  .faq { margin-top: 56px; }
+  .specs__grid { gap: 26px 18px; }
+  .spec__icon { width: 46px; height: 46px; margin-bottom: 14px; }
+  .spec__icon svg { width: 22px; height: 22px; }
+  .spec__title { font-size: 16px; margin-bottom: 6px; }
+  .spec__text { font-size: 13.5px; }
+  .faq-item__q { padding: 18px 2px; font-size: 16px; }
+  .faq-item__chev { width: 32px; height: 32px; }
+}

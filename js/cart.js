@@ -60,7 +60,7 @@ window.Cart = (function () {
   /* ---- custom ---- */
   function addCustom(data, qty = 1) {
     const uid = 'c' + Date.now() + Math.floor(Math.random() * 1000);
-    state.customs.push({ uid, name: data.name, artist: data.artist, version: data.version || A.DEFAULT_VERSION, image: data.image, qty });
+    state.customs.push({ uid, name: data.name, artist: data.artist, version: data.version || A.DEFAULT_VERSION, qty });
     save(); render(); bump();
     toast(`Added · ${data.name} · Custom`);
   }
@@ -109,11 +109,14 @@ window.Cart = (function () {
       const v = A.VERSIONS[c.version] || A.VERSIONS[A.DEFAULT_VERSION];
       return `
         <div class="cart-item">
-          <div class="cart-item__thumb cart-item__thumb--img" style="background-image:url('${c.image}')"></div>
+          <div class="cart-item__thumb" style="background:linear-gradient(145deg, #0a0a0a, #2a2a2a); color:#fff">
+            <div class="wave"><i></i><i></i><i></i><i></i></div>
+          </div>
           <div class="cart-item__info">
             <div class="cart-item__name">${esc(c.name)}</div>
-            <div class="cart-item__edition"><span class="svc-ico">${A.ICONS[c.version] || ''}</span>${v.label} · ${esc(c.artist)}</div>
-            <div class="cart-item__price">${A.fmt(A.CUSTOM.price)} · Custom</div>
+            <div class="cart-item__by">by ${esc(c.artist)}</div>
+            <div class="cart-item__edition"><span class="svc-ico">${A.ICONS[c.version] || ''}</span>${v.label} · Custom</div>
+            <div class="cart-item__price">${A.fmt(A.CUSTOM.price)}</div>
             <div class="cart-item__qty">
               <button data-cdec="${c.uid}" aria-label="Decrease">−</button>
               <span>${c.qty}</span>

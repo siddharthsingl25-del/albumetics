@@ -136,9 +136,9 @@ body.nav-open .header__burger span:nth-child(3) { transform: translateY(-7px) ro
 @media (max-width: 720px) {
   .header__burger { display: flex; }
   .header__nav {
-    position: fixed; inset: 0; z-index: 90;
+    position: fixed; inset: 0; z-index: 95;
     flex-direction: column; justify-content: center; align-items: center; gap: 28px;
-    background: rgba(255, 255, 255, 0.97); backdrop-filter: blur(16px);
+    background: var(--white);
     opacity: 0; pointer-events: none; transform: translateY(-12px);
     transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
   }

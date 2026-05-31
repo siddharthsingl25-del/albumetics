@@ -22,6 +22,14 @@ window.Cart = (function () {
   const NTFY_TOPIC = 'albumetics-orders-ama961fsmxtl5e5j';
   const NTFY_URL = 'https://ntfy.sh/' + NTFY_TOPIC;
 
+  /* ============================================================
+     UPI PAYMENT — buyers pay here, then upload a screenshot.
+     Change these to your own UPI details if they ever change.
+     ============================================================ */
+  const UPI_ID = 'albumetics@okaxis';
+  const UPI_NAME = 'Abhijot Singh';
+  const UPI_BANK = 'Punjab National Bank 5527';
+
   let state = load();           // { items: {key:qty}, customs: [..] }
   let els = {};
   let toastTimer;
@@ -203,7 +211,7 @@ window.Cart = (function () {
       <div class="co-overlay" id="coOverlay"></div>
       <div class="co" id="checkout" role="dialog" aria-modal="true" aria-label="Checkout">
         <div class="co__head">
-          <h3>Shipping details</h3>
+          <h3 id="coHead">Shipping details</h3>
           <button class="cart__close" id="coClose" aria-label="Close">×</button>
         </div>
         <form class="co__body" id="coForm" novalidate>
@@ -218,22 +226,143 @@ window.Cart = (function () {
                     </div>`;
           }).join('')}
         </form>
+        <div class="co__pay" id="coPay" hidden>
+          <p class="co-pay__amount">Pay <strong id="coPayAmt">₹0</strong></p>
+          <div class="co-qr" id="coQr"></div>
+          <a class="btn btn--solid btn--block co-pay__app" id="coPayApp" href="#">Pay in UPI app</a>
+          <div class="co-upi">
+            <div class="co-upi__row"><span>UPI ID</span><button type="button" id="coUpiCopy" class="co-upi__copy">${UPI_ID} <span aria-hidden="true">⧉</span></button></div>
+            <div class="co-upi__row"><span>Name</span><b>${esc(UPI_NAME)}</b></div>
+            <div class="co-upi__row"><span>Bank</span><b>${esc(UPI_BANK)}</b></div>
+          </div>
+          <p class="co-pay__scan">Scan to pay with any UPI app (GPay, PhonePe, Paytm…)</p>
+
+          <div class="co-field co-field--full" data-field="screenshot">
+            <label>Upload payment screenshot <span class="co-req">*</span></label>
+            <label class="shot" id="shotZone">
+              <input type="file" id="shotInput" accept="image/png,image/jpeg" hidden />
+              <span class="shot__inner" id="shotInner">
+                <span class="shot__ico">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="M7 9l5-5 5 5"/><path d="M5 20h14"/></svg>
+                </span>
+                <span class="shot__text"><b>Click to upload</b> your payment screenshot</span>
+                <span class="shot__hint">JPG or PNG</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="co-note-box">
+            <p><b>How confirmation works</b></p>
+            <p>1 · Pay the exact order amount using the QR / UPI ID above.</p>
+            <p>2 · Upload the payment screenshot here and place your order.</p>
+            <p>3 · Once we receive &amp; verify your payment, your order is <b>confirmed within 24 hours</b>.</p>
+            <p>4 · Dispatched within a few days of confirmation · delivery in <b>5–7 days</b>.</p>
+          </div>
+        </div>
+
         <div class="co__foot">
           <div class="cart__row"><span>Total</span><span id="coTotal">₹0</span></div>
-          <button class="btn btn--solid btn--block" id="coSubmit">Place order</button>
-          <p class="cart__note">You'll get a confirmation. We pack &amp; ship in 2–3 days.</p>
+          <button class="btn btn--solid btn--block" id="coNext">Continue to payment</button>
+          <button class="btn btn--solid btn--block" id="coSubmit" hidden>Place order</button>
+          <button class="btn btn--ghost btn--block" id="coBack" hidden>← Back to details</button>
+          <p class="cart__note" id="coFootNote">Next: pay by UPI &amp; upload the screenshot.</p>
         </div>
       </div>`;
     document.body.appendChild(wrap);
 
     $('#coClose').addEventListener('click', closeCheckout);
     $('#coOverlay').addEventListener('click', closeCheckout);
+    $('#coNext').addEventListener('click', goToPayment);
+    $('#coBack').addEventListener('click', backToDetails);
     $('#coSubmit').addEventListener('click', submitOrder);
-    $('#coForm').addEventListener('submit', (e) => { e.preventDefault(); submitOrder(); });
+    $('#coForm').addEventListener('submit', (e) => { e.preventDefault(); goToPayment(); });
+
+    // UPI ID copy
+    $('#coUpiCopy').addEventListener('click', () => {
+      navigator.clipboard && navigator.clipboard.writeText(UPI_ID);
+      toast('UPI ID copied');
+    });
+
+    // screenshot upload
+    const shotInput = $('#shotInput');
+    const shotZone = $('#shotZone');
+    shotInput.addEventListener('change', (e) => handleShot(e.target.files[0]));
+    ['dragover', 'dragenter'].forEach((ev) => shotZone.addEventListener(ev, (e) => { e.preventDefault(); shotZone.classList.add('drag'); }));
+    ['dragleave', 'drop'].forEach((ev) => shotZone.addEventListener(ev, (e) => { e.preventDefault(); shotZone.classList.remove('drag'); }));
+    shotZone.addEventListener('drop', (e) => { if (e.dataTransfer.files[0]) handleShot(e.dataTransfer.files[0]); });
+  }
+
+  let payShot = '';   // payment screenshot as data URL
+
+  function upiLink(amount) {
+    const p = new URLSearchParams({ pa: UPI_ID, pn: UPI_NAME, am: String(amount), cu: 'INR', tn: 'Albumetics order' });
+    return 'upi://pay?' + p.toString();
+  }
+
+  function goToPayment() {
+    const data = collect();
+    if (!validate(data)) { toast('Please fill the required fields'); return; }
+    localStorage.setItem(CO_STORE, JSON.stringify(data));
+
+    const sum = totals().sum;
+    const link = upiLink(sum);
+    $('#coPayAmt').textContent = A.fmt(sum);
+    $('#coPayApp').href = link;
+    $('#coQr').innerHTML = `<img alt="Scan to pay ${A.fmt(sum)}" width="220" height="220"
+      src="https://api.qrserver.com/v1/create-qr-code/?size=440x440&margin=0&data=${encodeURIComponent(link)}" />`;
+
+    $('#coForm').hidden = true;
+    $('#coPay').hidden = false;
+    $('#coHead').textContent = 'Pay & confirm';
+    $('#coNext').hidden = true;
+    $('#coSubmit').hidden = false;
+    $('#coBack').hidden = false;
+    $('#coFootNote').textContent = 'We confirm within 24 hrs of receiving payment.';
+    $('#checkout').scrollTop = 0;
+  }
+
+  function backToDetails() {
+    const co = $('#checkout'); if (!co) return;
+    const done = co.querySelector('.co-done'); if (done) done.hidden = true;
+    co.querySelector('.co__body').hidden = false;
+    const foot = co.querySelector('.co__foot'); if (foot) foot.hidden = false;
+    $('#coPay').hidden = true;
+    $('#coForm').hidden = false;
+    $('#coHead').textContent = 'Shipping details';
+    $('#coNext').hidden = false;
+    $('#coSubmit').hidden = true;
+    $('#coBack').hidden = true;
+    $('#coFootNote').textContent = 'Next: pay by UPI & upload the screenshot.';
+    co.scrollTop = 0;
+  }
+
+  function handleShot(file) {
+    if (!file || !/^image\/(png|jpeg)$/.test(file.type)) { toast('Please upload a JPG or PNG'); return; }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const max = 1200;
+        const scale = Math.min(1, max / Math.max(img.width, img.height));
+        const w = Math.round(img.width * scale), h = Math.round(img.height * scale);
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        payShot = canvas.toDataURL('image/jpeg', 0.8);
+        $('#shotInner').innerHTML = `<span class="shot__preview" style="background-image:url('${payShot}')"></span><span class="shot__text"><b>Screenshot added.</b> Click to replace</span>`;
+        $('#shotZone').classList.add('has-img');
+        const fld = document.querySelector('.co-field[data-field="screenshot"]');
+        if (fld) fld.classList.remove('co-field--error');
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
   }
 
   function openCheckout() {
     buildCheckout();
+    payShot = '';
+    backToDetails();
     $('#coTotal').textContent = A.fmt(totals().sum);
     $('#checkout').classList.add('open');
     $('#coOverlay').classList.add('open');
@@ -304,11 +433,26 @@ window.Cart = (function () {
     return L.join('\n');
   }
 
+  function dataURLtoBlob(dataURL) {
+    const [meta, b64] = dataURL.split(',');
+    const mime = (meta.match(/:(.*?);/) || [])[1] || 'image/jpeg';
+    const bin = atob(b64); const arr = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+    return new Blob([arr], { type: mime });
+  }
+
   async function submitOrder() {
     const { count, sum } = totals();
     if (!count) { toast('Your cart is empty'); return; }
     const data = collect();
-    if (!validate(data)) { toast('Please fill the required fields'); return; }
+    if (!validate(data)) { backToDetails(); toast('Please fill the required fields'); return; }
+
+    if (!payShot) {
+      toast('Please upload your payment screenshot');
+      const fld = document.querySelector('.co-field[data-field="screenshot"]');
+      if (fld) { fld.classList.add('co-field--error'); fld.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+      return;
+    }
 
     localStorage.setItem(CO_STORE, JSON.stringify(data));
     const btn = $('#coSubmit');
@@ -320,12 +464,25 @@ window.Cart = (function () {
     const title = `New order - ${asciiName} - Rs ${sum}`;
     let ok = false;
     try {
+      // 1) order details as a text notification
       const res = await fetch(NTFY_URL, {
         method: 'POST',
         headers: { 'Title': title, 'Tags': 'shopping_cart', 'Priority': 'high' },
         body: message,
       });
       ok = res.ok;
+      // 2) the payment screenshot as an attachment
+      if (ok && payShot) {
+        await fetch(NTFY_URL, {
+          method: 'PUT',
+          headers: {
+            'Title': `Payment screenshot - ${asciiName} - Rs ${sum}`,
+            'Filename': 'payment.jpg',
+            'Tags': 'moneybag',
+          },
+          body: dataURLtoBlob(payShot),
+        });
+      }
     } catch (err) {
       console.error('ntfy order failed:', err);
       ok = false;
@@ -334,12 +491,36 @@ window.Cart = (function () {
     btn.disabled = false; btn.textContent = 'Place order';
 
     if (ok) {
-      toast(`Order placed · ${A.fmt(sum)} 🎉`);
+      showConfirmation(sum);
       state = { items: {}, customs: [] }; save(); render(); bump();
-      closeCheckout(); setTimeout(close, 600);
+      payShot = '';
     } else {
       toast("Couldn't send the order — please try again");
     }
+  }
+
+  function showConfirmation(sum) {
+    const co = $('#checkout');
+    co.querySelector('.co__body').hidden = true;
+    $('#coPay').hidden = true;
+    const foot = co.querySelector('.co__foot'); if (foot) foot.hidden = true;
+    $('#coHead').textContent = 'Order received';
+    let done = co.querySelector('.co-done');
+    if (!done) {
+      done = document.createElement('div');
+      done.className = 'co-done';
+      co.appendChild(done);
+    }
+    done.hidden = false;
+    done.innerHTML = `
+      <div class="co-done__tick">✓</div>
+      <h4>Thank you! Payment screenshot received.</h4>
+      <p>We'll verify your payment and <b>confirm your order within 24 hours</b>.</p>
+      <p>Your magnets are dispatched within a few days of confirmation, and reach you in <b>5–7 days</b>.</p>
+      <p class="co-done__total">Order total · ${A.fmt(sum)}</p>
+      <button class="btn btn--solid btn--block" id="coDoneClose">Done</button>`;
+    $('#coDoneClose').addEventListener('click', () => { closeCheckout(); setTimeout(close, 400); });
+    co.scrollTop = 0;
   }
 
   document.addEventListener('DOMContentLoaded', init);

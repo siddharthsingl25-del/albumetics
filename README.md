@@ -19,7 +19,7 @@ Tap a magnet with your phone and the track you love starts playing instantly. No
 - **Product detail page** (`product.html?id=…`) with a **Spotify / Apple Music edition** selector and quantity stepper
 - **Customize page** (`custom.html`) — upload album art, add song + artist (with a live preview) for a made-to-order magnet
 - A **cart drawer** with add / quantity / remove, live totals, and **checkout**. Each line remembers its edition (Spotify vs Apple Music)
-- **Checkout** collects shipping details (name, phone, email, Instagram, address, city, state, PIN, notes) and **pushes the order to ntfy.sh** so you get a phone notification
+- **Checkout** collects shipping details (name, phone, email, Instagram, address, city, state, PIN, notes), then a **UPI payment step**: a QR with the exact order amount, the UPI ID/bank, and a required **payment-screenshot upload**. Both the order details and the screenshot are **pushed to ntfy.sh** so you get a phone notification. Orders are confirmed within 24 hrs of payment, dispatched in a few days, delivered in 5–7 days
 - Cart persists in `localStorage`
 - Fully responsive; respects `prefers-reduced-motion`
 

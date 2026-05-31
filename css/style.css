@@ -645,7 +645,7 @@ body.nav-open .header__burger span:nth-child(3) { transform: translateY(-7px) ro
   color: var(--ink-70); font-size: 16px; max-width: 760px;
   padding-right: 56px; margin: 0 0 14px;
 }
-.faq-item__a > div { padding-bottom: 6px; }
+.faq-item__a > div { padding-bottom: 0; }
 .faq-item.open .faq-item__a > div { padding-bottom: 22px; }
 @media (max-width: 560px) { .faq-item__a p { padding-right: 0; } }
 

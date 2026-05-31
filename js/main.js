@@ -50,7 +50,7 @@
   const grid = $('#products');
   if (grid) {
     const waveBars = (n) => Array.from({ length: n }, () => '<i></i>').join('');
-    grid.innerHTML = A.PRODUCTS.map((p, i) => `
+    const productCards = A.PRODUCTS.map((p, i) => `
       <a class="card" href="product.html?id=${p.id}" data-delay="${i % 3}">
         <div class="card__media" style="background:linear-gradient(150deg,#fafafa,#efefef)">
           <div class="card__art" style="background:linear-gradient(145deg, ${p.color}, ${A.shade(p.color, -18)}); color:${A.textOn(p.color)}">
@@ -67,6 +67,27 @@
           <span class="card__add">View product <span aria-hidden="true">→</span></span>
         </div>
       </a>`).join('');
+
+    const customCard = `
+      <a class="card card--custom" href="custom.html">
+        <div class="card__media">
+          <div class="card__art card__art--custom">
+            <span class="card__plus">+</span>
+            <div class="wave">${waveBars(7)}</div>
+          </div>
+          <div class="card__tap"><span><span class="ico">✶</span>Build your own</span></div>
+        </div>
+        <div class="card__body">
+          <div class="card__row">
+            <span class="card__name">Customize</span>
+            <span class="card__price">${A.fmt(A.CUSTOM.price)}</span>
+          </div>
+          <p class="card__desc">Your song, your artist — a one-of-a-kind magnet made just for you.</p>
+          <span class="card__add">Make it yours <span aria-hidden="true">→</span></span>
+        </div>
+      </a>`;
+
+    grid.innerHTML = productCards + customCard;
     $$('#products .card').forEach((el) => window.UI.observe(el));
   }
 })();

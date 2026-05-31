@@ -137,12 +137,15 @@ body.nav-open .header__burger span:nth-child(3) { transform: translateY(-7px) ro
   .header__burger { display: flex; }
   .header__nav {
     position: fixed; inset: 0; z-index: 95;
+    width: 100vw; height: 100vh; height: 100dvh;
     flex-direction: column; justify-content: center; align-items: center; gap: 28px;
     background: var(--white);
     opacity: 0; pointer-events: none; transform: translateY(-12px);
     transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
   }
   body.nav-open .header__nav { opacity: 1; pointer-events: auto; transform: none; }
+  /* keep the top bar solid white while the menu is open so nothing shows through */
+  body.nav-open .header { background: var(--white); backdrop-filter: none; border-bottom-color: transparent; }
   .header__nav a { font-size: 26px; font-weight: 600; color: var(--ink); }
   .header__nav a::after { display: none; }
   body.nav-open { overflow: hidden; }

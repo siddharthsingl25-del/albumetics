@@ -287,7 +287,6 @@ window.Cart = (function () {
     L.push('');
     L.push(`Items (${count}):`);
     L.push(...orderLines());
-    if (state.customs.length) L.push('(custom art images are in the browser — buyer will share/confirm)');
     L.push('');
     L.push(`TOTAL: ${A.fmt(sum)}`);
     L.push('');
